@@ -1,12 +1,5 @@
 import os
 import streamlit as st
-import rag_core
-from rag_core import Chunk
-
-
-from rag_core import load_vectorstore, rag_qa
-from rag_core import answer_stream
-
 
 # ✅ 배포/로컬 공통: secrets 우선, 없으면 OS env 사용
 if "OPENAI_API_KEY" in st.secrets:
@@ -17,6 +10,13 @@ os.environ["DEEPSEEK_BASE_URL"] = st.secrets.get(
     "DEEPSEEK_BASE_URL",
     os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
 )
+
+import rag_core
+from rag_core import Chunk
+from rag_core import load_vectorstore, rag_qa
+from rag_core import answer_stream
+
+
 # =========================
 # Streamlit page config
 # =========================
