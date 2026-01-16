@@ -1,0 +1,8 @@
+streamlit>=1.36
+faiss-cpu>=1.7.4
+numpy
+pandas
+pypdf
+requests
+openai>=1.40.0
+tqdm
