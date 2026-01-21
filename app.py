@@ -126,23 +126,11 @@ CATALOG_TEXT = "\n".join([
 # =========================
 # Sidebar controls
 # =========================
+vs_dir = os.getenv("PAIK_VS_DIR", "data/paik_vs")
 with st.sidebar:
     st.markdown('<div class="sidebar-title">설정</div>', unsafe_allow_html=True)
-
-    vs_dir = st.text_input(
-        "VectorStore 폴더 경로",
-        value=os.getenv("PAIK_VS_DIR", "data/paik_vs"),
-        help="index.faiss + chunks.jsonl(or chunks.pkl)이 있는 폴더",
-    )
-
-    use_rerank = st.toggle("LLM rerank 사용", value=True)
-    top_n = st.slider("근거 개수(top_n_evidence)", 2, 12, 8)
+    top_n = st.slider("근거 개수 설정", 2, 12, 8)
     score_th = st.slider("근거 충분성 top_score 임계값", 0.05, 0.60, 0.22, 0.01)
-
-    st.divider()
-    st.markdown('<span class="small-caption">환경변수: OPENAI_API_KEY, DEEPSEEK_API_KEY 필요</span>', unsafe_allow_html=True)
-    st.markdown('<span class="small-caption">로컬 실행: streamlit run app.py</span>', unsafe_allow_html=True)
-
 
 # =========================
 # Load VS (cached)
@@ -159,7 +147,7 @@ except Exception as e:
 # =========================
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "안녕하세요! 백남준 챗봇입니다. 궁금한 점을 물어보세요."}
+        {"role": "assistant", "content": "안녕하세요! 백남준의 말과 글, 작품과 활동 기록을 바탕으로 안내하는 도슨트 챗봇입니다. 질문을 통해 백남준의 세계를 탐색해보세요!"}
     ]
 
 
@@ -197,7 +185,7 @@ if user_q:
                 all_sources=ALL_SOURCES,
                 default_sources=DEFAULT_SOURCES,
                 history=recent_history,          # ✅ (현재는 선택, 그래도 넘겨둠)
-                use_rerank=use_rerank,
+                use_rerank= True,
                 top_n_evidence=top_n,
                 score_threshold=score_th,
             )
