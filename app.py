@@ -123,14 +123,14 @@ CATALOG_TEXT = "\n".join([
     for s in ALL_SOURCES
 ])
 
-# =========================
-# Sidebar controls
+
+# Fixed settings (슬라이더 제거 + 값 고정)
 # =========================
 vs_dir = os.getenv("PAIK_VS_DIR", "data/paik_vs")
-with st.sidebar:
-    st.markdown('<div class="sidebar-title">설정</div>', unsafe_allow_html=True)
-    top_n = st.slider("근거 개수 설정", 2, 12, 8)
-    score_th = st.slider("근거 충분성 top_score 임계값", 0.05, 0.60, 0.22, 0.01)
+
+TOP_N_EVIDENCE = 8        # 근거 개수 고정
+SCORE_THRESHOLD = 0.22    # 근거 충분성 임계값 고정
+
 
 # =========================
 # Load VS (cached)
@@ -186,8 +186,8 @@ if user_q:
                 default_sources=DEFAULT_SOURCES,
                 history=recent_history,          # ✅ (현재는 선택, 그래도 넘겨둠)
                 use_rerank= True,
-                top_n_evidence=top_n,
-                score_threshold=score_th,
+                top_n_evidence=TOP_N_EVIDENCE,
+                score_threshold=SCORE_THRESHOLD,
             )
 
         # 2) 이제 LLM 답변을 streaming으로 생성
