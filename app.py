@@ -147,9 +147,8 @@ except Exception as e:
 # =========================
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "안녕하세요! 백남준의 말과 글, 작품과 활동 기록을 바탕으로 안내하는 도슨트 챗봇입니다.\n\n질문을 통해 백남준의 세계를 탐색해보세요!"}
+        {"role": "assistant", "content": "안녕하세요. 백남준입니다.\n\n내 작업과 생각, 그리고 내가 걸어온 시간들에 대해 무엇이든 물어보세요."}
     ]
-
 
 # =========================
 # Render chat history
