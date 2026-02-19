@@ -21,7 +21,7 @@ from rag_core import answer_stream
 # Streamlit page config
 # =========================
 st.set_page_config(
-    page_title="백남준 RAG 챗봇",
+    page_title="백남준 챗봇",
     page_icon="🧠",
     layout="centered",
 )
@@ -83,6 +83,7 @@ ALL_SOURCES = [
     "8.The-Mysteries-of-Encounters-between-Nam_June_Paik-John_Cage-and-Joseph_Beuys.pdf",
     "[백남준 작품 13선] 소장처 정리 (2).xlsx",
     "백남준 해외소장 현황 업데이트_2026ver.xlsx",
+    "백남준 말에서 크리스토 (OCR PDF)",
 
 ]
 
@@ -99,13 +100,14 @@ SOURCE_DESCRIPTIONS = {
     "백남준 작품목록_영화.pdf": "작품 목록(영화 관련) – 작품명/제작연도/형식 등",
     "백남준 작품목록_단채널비디오.pdf": "작품 목록(단채널 비디오) – 작품명/연도/형식 등",
     "백남준 작품목록_다큐멘터리 비디오.pdf": "작품 목록(다큐멘터리 비디오) – 작품명/연도 등",
-    "The_Worlds_of_Nam_June_Paik_2000.pdf": "2000년 전시/도록 성격의 자료(작품/에세이/전시 맥락 포함 가능)",
+    "The_Worlds_of_Nam_June_Paik_2000.pdf": "전시/도록 성격의 자료(작품/에세이/전시 맥락 포함 가능)",
     "백남준 해외기사_NER,POS.xlsx": "해외 기사 텍스트/분석 결과(인물/지명/키워드, 문장 단위 정보 가능)",
     "백남준-아카이브전-전시-서문.pdf": "아카이브 전시 서문/기획 글(전시 의도/해석/맥락)",
     "김금미_백남준기념관-강연-원고.pdf": "강연 원고(해설/비평/맥락 설명 중심)",
     "8.The-Mysteries-of-Encounters-between-Nam_June_Paik-John_Cage-and-Joseph_Beuys.pdf": "논문/에세이(백남준-케이지-보이스 관계/해석 중심)",
     "[백남준 작품 13선] 소장처 정리 (2).xlsx": "백남준 작품 13선 작품별(시트별) 버전 현황/소장처/관련 정보 정리",
     "백남준 해외소장 현황 업데이트_2026ver.xlsx": "백남준 해외 소장 현황 업데이트(2026ver) - 소장처/작품 정보(첫 시트만 사용)",
+    "백남준 말에서 크리스토 (OCR PDF)": "백남준 일생 일화들 소개, 생전 백남준의 말 수록 (페이지 기반 텍스트, 인용/발언/에세이 수록)"
 
 }
 
@@ -113,6 +115,7 @@ DEFAULT_SOURCES = [
     "백남준 연대기_백남준문화예술재단.xlsx",
     "백남준 해외기사_NER,POS.xlsx",
     "The_Worlds_of_Nam_June_Paik_2000.pdf",
+    "백남준 말에서 크리스토 (OCR PDF)", 
 ]
 
 # ✅ 라우터에게 "파일명 + 한줄설명" 카탈로그를 보여줌
@@ -147,7 +150,7 @@ except Exception as e:
 # =========================
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "안녕하세요. 백남준입니다.\n\n내 작업과 생각, 그리고 내가 걸어온 시간들에 대해 무엇이든 물어보세요."}
+        {"role": "assistant", "content": "안녕하세요. 백남준 챗봇입니다.\n\n백남준의 작업과 생각에 대해 무엇이든 물어보세요."}
     ]
 
 # =========================
